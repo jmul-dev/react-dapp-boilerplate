@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import * as Web3 from "web3";
-//import { abi: contractAbi, networks: contractNetwork } from "./contracts/SMARTCONTRACT.json";
+//import { abi, networks } from "./contracts/SMARTCONTRACT.json";
 import { Alert, AlertContainer } from "react-bs-notifier";
 //import { BigNumber } from "bignumber.js";
 const promisify = require("tiny-promisify");
@@ -22,7 +22,7 @@ class App extends Component {
 			const web3 = await this.connectToWeb3();
 			await this.verifyNetwork(web3);
 			const accounts = await this.getAccounts(web3);
-			//const contractName = web3.eth.contract(contractAbi).at(contractNetwork[1].address);
+			//const contractName = web3.eth.contract(abi).at(networks[1].address);
 			const intervalId = setInterval(async () => {
 				await this.checkAccount(web3, accounts);
 			}, 1000);
