@@ -64,9 +64,7 @@ class App extends Component {
 		if (parseInt(networkId, 10) === 4) {
 			return true;
 		} else {
-			throw new Error(
-				"The Blockchain Bootcamp smart contract is not available on the Ethereum network you're currently connected to"
-			);
+			throw new Error("The SOMETHING smart contract is not available on the Ethereum network you're currently connected to");
 		}
 	}
 
