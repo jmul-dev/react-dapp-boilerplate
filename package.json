@@ -5,9 +5,11 @@
 	"dependencies": {
 		"bignumber.js": "^8.0.1",
 		"react": "^16.6.3",
+		"react-bs-notifier": "^5.0.0",
 		"react-dom": "^16.6.3",
 		"react-scripts": "2.1.1",
 		"styled-components": "^4.1.1",
+		"tiny-promisify": "^1.0.0",
 		"web3": "^0.20.7"
 	},
 	"scripts": {
