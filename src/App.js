@@ -22,16 +22,15 @@ class App extends Component {
 			const web3 = await this.connectToWeb3();
 			await this.verifyNetwork(web3);
 			const accounts = await this.getAccounts(web3);
-			//const contractName = web3.eth.contract(abi).at(networks[1].address);
 			const intervalId = setInterval(async () => {
 				await this.checkAccount(web3, accounts);
 			}, 1000);
+			this.setState({ accounts, intervalId });
 
-			this.setState({
-				accounts,
-				//contractName,
-				intervalId
-			});
+			if (accounts.length) {
+				//const contractName = web3.eth.contract(abi).at(networks[1].address);
+				//this.setState({contractName});
+			}
 		} catch (e) {
 			this.setState({ showAlert: true, alertContent: e.message });
 		}
@@ -70,11 +69,13 @@ class App extends Component {
 
 	async getAccounts(web3) {
 		const accounts = await promisify(web3.eth.getAccounts)();
-		if (accounts.length) {
-			return accounts;
-		} else {
-			throw new Error("Unable to find an active account on the Ethereum network you're currently connected to");
+		if (!accounts.length) {
+			this.setState({
+				showAlert: true,
+				alertContent: "Unable to find an active account on the Ethereum network you're currently connected to"
+			});
 		}
+		return accounts;
 	}
 
 	async checkAccount(web3, accounts) {
